@@ -44,18 +44,6 @@ class Task(Base):
     def __repr__(self):
         return f'{self.date} - {self.subject} - {self.status} - {self.tags}'
 
-# Link tasks to tags
-
-task_tag = db.Table(
-    'task_tag',
-    Base.metadata,
-    db.Column('id', db.Integer, primary_key=True),
-    db.Column('task_id', db.ForeignKey('task.id')),
-    db.Column('tag_id', db.ForeignKey('tag.id')),
-    db.UniqueConstraint('task_id', 'tag_id')
-
-)
-
 # Tags
 
 class Tag(Base):
@@ -69,3 +57,16 @@ class Tag(Base):
 
     def __repr__(self):
         return self.name
+
+# Link tasks to tags
+
+task_tag = db.Table(
+    'task_tag',
+    Base.metadata,
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('task_id', db.ForeignKey('task.id')),
+    db.Column('tag_id', db.ForeignKey('tag.id')),
+    db.UniqueConstraint('task_id', 'tag_id')
+
+)
+
