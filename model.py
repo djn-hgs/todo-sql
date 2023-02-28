@@ -18,11 +18,6 @@ class Status(Base):
     def __repr__(self):
         return self.name
 
-
-
-
-
-
 # Tasks
 
 class Task(Base):

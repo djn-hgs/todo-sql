@@ -21,9 +21,17 @@ with orm.Session(engine) as session:
     session.add(pending)
 
     session.add(task)
-
+    session.add(
+        m.Task(date=datetime.date.fromisoformat('2023-03-02'),
+               subject='Get started on library task')
+    )
 
     print(task)
     print(pending.tasks)
+
+    tasks = session.query(m.Task).all()
+
+    for task in tasks:
+        print(task)
 
     session.commit()
